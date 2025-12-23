@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>حاسبة مؤشر كتلة الجسم BMI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #74ebd5, #acb6e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            direction: rtl;
+            margin: 0;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,.2);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #43a047;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f4f6f8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>حاسبة مؤشر كتلة الجسم</h2>
+
+    <!-- ✅ نفس الرابط / -->
+    <form method="post" action="/">
+        <input type="number" step="0.1" name="weight" placeholder="الوزن (كجم)" required>
+        <input type="number" step="0.1" name="height" placeholder="الطول (سم)" required>
+        <button type="submit">احسب</button>
+    </form>
+
+    {% if bmi %}
+    <div class="result">
+        <h3>قيمة BMI: {{ bmi }}</h3>
+
+        {% if bmi < 18.5 %}
+            <p>التصنيف: نحيف</p>
+        {% elif bmi < 25 %}
+            <p>التصنيف: وزن طبيعي</p>
+        {% elif bmi < 30 %}
+            <p>التصنيف: زيادة وزن</p>
+        {% else %}
+            <p>التصنيف: سمنة</p>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
